@@ -1,2 +1,2 @@
 # tinyLib
-A small customizable library for C/C++ development.
+A small customizable library for C development.
