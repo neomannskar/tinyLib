@@ -10,13 +10,13 @@ typedef struct {
     size_t capacity;
 } Vector;
 
-void VectorInit(Vector* vector) {
+void VecInit(Vector* vector) {
     vector->data = NULL;
     vector->size = 0;
     vector->capacity = 0;
 }
 
-void VectorAdd(Vector* vector, void* element) {
+void VecApp(Vector* vector, void* element) {
     if (vector->size == vector->capacity) {
         vector->capacity = (vector->capacity == 0) ? 1 : vector->capacity * 2;
         vector->data = (void**) realloc(vector->data, vector->capacity * sizeof(void*));
@@ -26,14 +26,14 @@ void VectorAdd(Vector* vector, void* element) {
     vector->size++;
 }
 
-void* VectorGet(const Vector* vector, size_t index) {
+void* VecGet(const Vector* vector, size_t index) {
     if (index >= vector->size) {
         return NULL;
     }
     return vector->data[index];
 }
 
-void VectorFree(Vector* vector) {
+void VecFree(Vector* vector) {
     free(vector->data);
     vector->data = NULL;
     vector->size = 0;
