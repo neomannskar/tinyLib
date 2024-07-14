@@ -1,4 +1,5 @@
 #ifndef TINYLIB_H_
+#define TINYLIB_H_
 
 #include "./lib/error.h"
 #include "./lib/string.h"
