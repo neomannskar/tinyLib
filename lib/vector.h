@@ -12,14 +12,15 @@ typedef struct {
     size_t size, capacity;
 } Vector;
 
-void tl_vinit(Vector *vector) {
+enum Err tl_vinit(Vector *vector) {
     if (vector == NULL) {
         tl_error("tl_vinit(Vector*)", "Vector* is NULL.");
-        return;
+        return TINYLIB_FAILURE;
     }
     vector->data = NULL;
     vector->size = 0;
     vector->capacity = 0;
+    return TINYLIB_SUCCESS;
 }
 
 Vector *tl_vcreate() {
@@ -34,10 +35,10 @@ Vector *tl_vcreate() {
     return vector;
 }
 
-void tl_vpush(Vector *vector, void* element) {
+enum Err tl_vpush(Vector *vector, void* element) {
     if (vector == NULL) {
         tl_error("tl_vpush(Vector*, void*)", "Vector* is NULL.");
-        return;
+        return TINYLIB_FAILURE;
     }
 
     if (vector->size == vector->capacity) {
@@ -47,6 +48,7 @@ void tl_vpush(Vector *vector, void* element) {
 
     vector->data[vector->size] = element;
     vector->size++;
+    return TINYLIB_SUCCESS;
 }
 
 void* tl_vpop(Vector *vector) {
@@ -83,22 +85,23 @@ void* tl_vget(const Vector *vector, size_t index) {
     return vector->data[index];
 }
 
-void tl_vdrop(Vector *vector) {
+enum Err tl_vdrop(Vector *vector) {
     if (vector == NULL) {
         tl_error("tl_vdrop(Vector*)", "Vector* is NULL.");
-        return;
+        return TINYLIB_FAILURE;
     }
 
     free(vector->data);
     vector->data = NULL;
     vector->size = 0;
     vector->capacity = 0;
+    return TINYLIB_SUCCESS;
 }
 
-void tl_vfree(Vector *vector) {
+enum Err tl_vfree(Vector *vector) {
     if (vector == NULL) {
         tl_error("tl_vfree(Vector*)", "Vector* is NULL.");
-        return;
+        return TINYLIB_FAILURE;
     }
 
     free(vector->data);
@@ -106,6 +109,7 @@ void tl_vfree(Vector *vector) {
     vector->size = 0;
     vector->capacity = 0;
     free(vector);
+    return TINYLIB_SUCCESS;
 }
 
 #endif // TINYLIB_VECTOR_H_
