@@ -111,7 +111,7 @@ enum Err tl_strapp(String *string, const char *newContent) {
     return TINYLIB_SUCCESS;
 }
 
-void tl_strdrop(String *string) {
+enum Err tl_strdrop(String *string) {
     if (string == NULL) {
         tl_error("tl_strdrop(String*)", "String* is NULL.");
         return TINYLIB_FAILURE;
@@ -126,7 +126,7 @@ void tl_strdrop(String *string) {
     return TINYLIB_SUCCESS;
 }
 
-void tl_strfree(String *string) {
+enum Err tl_strfree(String *string) {
     if (string == NULL) {
         tl_error("tl_strfree(String*)", "String* is NULL.");
         return TINYLIB_FAILURE;
