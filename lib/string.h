@@ -36,16 +36,16 @@ enum Err tl_strinit(String *string, const char *initialContent) {
     return TINYLIB_SUCCESS;
 }
 
-enum Err tl_strcreate(const char *initialContent) {
+String *tl_strcreate(const char *initialContent) {
     String *string = (String*)malloc(sizeof(String));
     if (string == NULL) {
         tl_error("tl_strcreate(String*, const char*)", "Memory allocation failed.");
-        return TINYLIB_FAILURE;
+        return NULL;
     }
         
     if (initialContent == NULL) {
         tl_error("tl_strcreate(String*, const char*)", "const char* is NULL.");
-        return TINYLIB_FAILURE;
+        return NULL;
     }
 
     size_t initialLength = strlen(initialContent);
@@ -59,7 +59,7 @@ enum Err tl_strcreate(const char *initialContent) {
         string->length = 0;
         string->capacity = 0;
     }
-    return TINYLIB_SUCCESS;
+    return string;
 }
 
 enum Err tl_strcap(String *string, const size_t cap) {
