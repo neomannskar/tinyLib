@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "./lib/error.h"
+#include "./error.h"
 
 typedef struct {
     char *content;
