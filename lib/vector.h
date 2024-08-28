@@ -76,7 +76,7 @@ void* tl_vpop(Vector *vector) {
 void* tl_vget(const Vector *vector, size_t index) {
     if (vector == NULL) {
         tl_error("tl_vget(Vector*)", "Vector* is NULL.");
-        return;
+        return NULL;
     }
 
     if (index >= vector->size) {
